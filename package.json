@@ -20,11 +20,13 @@
   "author": "MetaMask",
   "license": "MIT",
   "bugs": {
-    "url": ""
+  
   },
   "homepage": "",
   "dependencies": {
-    "@metamask/onboarding": "^1.0.1"
+    "@metamask/detect-provider": "^1.2.0",
+    "@metamask/onboarding": "^1.0.1",
+    "ethers": "^5.7.0"
   },
   "devDependencies": {
     "@metamask/eslint-config": "^2.0.0",

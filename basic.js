@@ -6,8 +6,11 @@ const initialize = () => {
   //Get the button from the DOM 
   const onboardButton = document.getElementById('connectButton');
   const getAccountsButton = document.getElementById('getAccounts');
-  const getAccountsResult = document.getElementById('getAccountsResult');
+  const getAccountsResult = document.getElementById('getAccountsResult')
+  //Get the p element from the DOM
   const allAccounts = document.getElementById('accounts');
+  const network = document.getElementById('network');
+  const chainId = document.getElementById('chainId');
 
   //Calling the isMetaMaskInstalled function to check if the extention is installed
   const isMetaMaskInstalled = () => {
@@ -46,6 +49,7 @@ const MetaMaskClientCheck = () => {
     onboardButton.onclick = onClickInstall;
     //The button is now disabled
     onboardButton.disabled = true;
+    
   } else {
     //If it is installed - text of the button says "Connect"
     onboardButton.innerText = 'Connect';
@@ -63,6 +67,16 @@ const MetaMaskClientCheck = () => {
     //We take the first address in the array of addresses and display it
     getAccountsResult.innerHTML = accounts[0] || 'Not able to get accounts';
     allAccounts.innerHTML = accounts[0];
+
+    
+    const provider = await detectEthereumProvider();
+    console.log(provider);
+
+    const chain = await ethereum.request({ method: 'eth_chainId' });
+    console.log(chain);
+    network.innerHTML = chain == '0x3' ?'Ethereum Ropsten Nestnet' : 'Ethereum Kovan Testnet';
+    chainId.innerHTML = chain;
+
   });
   MetaMaskClientCheck();
 };
